@@ -66,90 +66,57 @@ for (let i = 0; i < arrayContagem.length; i++) {
     if (arrayContagem[i] > maiorQuantidade) {
         maiorQuantidade = arrayContagem[i];
         indiceMaisVendido = i;
-    }else{
-        maiorQuantidade = maiorQuantidade;
     }
 }
 
 console.log(`O sabor mais vendido foi ${sabores[indiceMaisVendido]} com ${maiorQuantidade} pedidos.`);
-
 let faturamentoTotal = 0;
-
 let pizzasGrandes = 0;
-
 const valoresPedidos = [];
 
 for (let i = 0; i < totalPedidos; i++) {
-
     const precoPizza = calcularPreco(pedidosSabor[i], pedidosTamanho[i]);
-
     const valorTotalPedido = precoPizza + calcularEntrega(precoPizza);
-
     faturamentoTotal += valorTotalPedido;
-
     valoresPedidos.push(valorTotalPedido);
-
     if (pedidosTamanho[i] == "G") {
-
         pizzasGrandes += 1;
-
     }
-
 }
 
 console.log(`Faturamento total: ${formatarReais(faturamentoTotal)}`);
-
 console.log(`Pizzas grandes vendidas: ${pizzasGrandes}`);
-
 sabores.forEach((sabor, i) => {
-
     console.log(`${i + 1}. ${sabor} - ${formatarReais(precos[i])}`);
-
 });
 
 const pedidosAcima50 = valoresPedidos.filter(valor => valor > 50);
-
 console.log(`Pedidos acima de R$ 50: ${pedidosAcima50.length}`);
 
 const comCupom = valoresPedidos.map(valor => valor * 0.9);
-
 console.log("Valores com cupom de 10%:");
 
 comCupom.forEach(valor => console.log(formatarReais(valor)));
 
 // QUESTÃO 7
-
 const meta = 800;
-
-let faturamentoSimulado = faturamentoTotal; // cópia: o original não muda
-
+let faturamentoSimulado = faturamentoTotal;
 let pizzasExtras = 0;
-
 const valorQuatroQueijosG = calcularPreco(3, "G");
-
 const entregaExtra = calcularEntrega(valorQuatroQueijosG);
 
 while (faturamentoSimulado < meta) {
-
     faturamentoSimulado += valorQuatroQueijosG + entregaExtra;
-
     pizzasExtras++;
-
 }
 
 console.log(`Faltam ${pizzasExtras} pizzas Quatro Queijos G para a meta de ${formatarReais(meta)}.`);
 
 if (faturamentoTotal >= 600 && pizzasGrandes >= 4) {
-
     console.log("Dia excelente!");
-
 } else if (faturamentoTotal >= 400 || pizzasGrandes >= 6) {
-
     console.log("Dia bom.");
-
 } else {
-
     console.log("Dia fraco.");
-
 }
  
